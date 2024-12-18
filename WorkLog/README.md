@@ -1,3 +1,14 @@
+## idea 4 取spm_T* 的數值，去找每個cluster在哪個腦區，輸出每個cluster腦區的%數
+1. 確認spm_T的mask符合預期 --> 在特定的threshold中有一個mask在  
+2. 找一個tool or template 可以有每個腦區的位置的資訊  
+2-1. tool --> 找到一個輸入mask的圖，輸出cluster1 xx area 50% xx area 30% ...  
+2-2. template --> 想辦法疊起來看%數  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -- 2024/12/18
+--------------------------------------------------------------------------------------------------------------
 ## idea 1 用"看"的 找pattern
 1. 每個受試者從1st level看，先從最低的顯著值(0.001)看，看有沒有想要的pattern，沒有的話增加alpha值(0.05之類的)，再看有沒有pattern，限定一個最大的alpha值，如果都沒有的話，就是不符合預期的結果(把這筆資料刪掉???)
 - 雛形 : 可以把所有的圖畫出來(像是SPM render之類的)，給定哪裡是需要顯著(有亮)的地方，找出來  
