@@ -96,6 +96,7 @@ function Clust_Label_file(SPMfile,ic,varargin)
                 k = k(end-1); % FWEc
         end
         SPM.k = k;
+        if k == inf, fprintf('%s contrast %d cluster FDR is Inf',SPMfile,ic); return; end 
     end
     [~,xSPM] = spm_getSPM(SPM);
 
