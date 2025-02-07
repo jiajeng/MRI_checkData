@@ -1,23 +1,26 @@
-% P = 'E:\test\'; %<------------------- define path
+% using SPM to get t threshold then get mask cluster
+clear
+check_copyoutexcel
+% P = 'E:\test\'; %<------------------- define subject base path
 if ~exist("P",'var')
     P = uigetdir('','select directory containing the subject ID folder folder');
 end
 sub = {dir(P).name};
 sub = sub(contains(sub,'SUB'));
-% p = 'E:\test\SUB0007'; % first subject SPM path
+% p = fullfile(P,sub{1}); %<------------------- define first subject SPM path
 if ~exist("p",'var')
     p = uigetdir(P,'select first subject SPM.mat folder');
 end
 
 % output folder 
-% outfold = 'E:\test\Res_pert'; %<------------------- define path
+% outfold = 'E:\test\Res_pert'; %<------------------- define result path
 if ~exist("outfold",'var')
     outfold = uigetdir('','select result excel file output direction');
 end
 
 % template var
-% temfile = 'E:\test\temp\ratlas.nii'; % <------------------- define path
-% teminfo = 'E:\test\temp\atlas.txt'; % <------------------- define path
+% temfile = 'E:\test\temp\ratlas.nii'; % <------------------- define template path
+% teminfo = 'E:\test\temp\atlas.txt'; % <------------------- define template file
 if ~exist("temfile",'var') || ~exist(temfile,'file')
     [tn,tp] = uigetfile('*.nii','select template niifile');
     temfile = fullfile(tp,tn);
@@ -67,6 +70,7 @@ try
         end
 
         load(fullfile(p,'SPM.mat'));
+        
         % get all contrast
         CONNAME = {SPM.xCon.name};
         nCON = length(CONNAME);
@@ -75,6 +79,16 @@ try
         % loop for all contrast
         chkp = fullfile(p,'Clust_check');
         chkfile = {SPM.xCon.name};
+
+        % check file is number or name 
+        tmp = spmTfile{1};
+        tmp = split(tmp,'.');
+        tmp = split(tmp(1),'_');
+        tmp = tmp{end};
+        if isnan(str2double(tmp))
+            spmTfile = spmTfile(cellfun(@(x) find(contains(spmTfile,x)),chkfile));
+        end
+
         for nc = 1:nCON
             % get contrast cluster label file
             Clust_Label_file(fullfile(p,'SPM.mat'),nc ...
@@ -120,7 +134,7 @@ if exist("outfold",'var')
     CONNAME = {dir(outfold).name};
     CONNAME = CONNAME(~contains(CONNAME,'.'));
     R = struct();
-    k = 1.5;% 
+    k = 1.5; 
     for conI = 1:length(CONNAME)
         % get excel file
         file = {dir(fullfile(outfold,CONNAME{conI})).name};
@@ -140,10 +154,10 @@ if exist("outfold",'var')
                 R.(CONNAME{conI}).Value(i,j) = r(1,2);
             end
         end
+
         sr = mean(R.(CONNAME{conI}).Value,1,'omitmissing');
         
-        
-        r = R.(CONNAME{conI}).Value(R.(CONNAME{conI}).Value~=0);
+        r = R.(CONNAME{conI}).Value(logical(tril(ones(size(R.(CONNAME{conI}).Value)),-1)));
         R.(CONNAME{conI}).IQR = iqr(r);
         % Q1 and Q3
         Q = quantile(r,[1/4,3/4]);
@@ -165,10 +179,12 @@ function [app] = check_copyoutexcel
     app.UIFigure.Position = [100 100 363 70];
     app.UIFigure.Name = 'MATLAB App';
     
+
     % Create yesCheckBox
     app.yesCheckBox = uicheckbox(app.UIFigure,"ValueChangedFcn",@yesCheckBoxValueChanged);
     app.yesCheckBox.Text = 'yes';
     app.yesCheckBox.Position = [163 -2 46 31];
+    app.yesCheckBox.Value = false;
 
     % Create Label
     app.Label = uilabel(app.UIFigure);
@@ -187,16 +203,17 @@ function [app] = check_copyoutexcel
     % Show the figure after all components are created
     app.UIFigure.Visible = 'on';
     app.UIFigure.CloseRequestFcn = @UIFigureCloseRequest;
-    yesCheckBoxValueChanged(app)
+    app.UIFigure.UserData = app.yesCheckBox.Value;
 
     % Value changed function: yesCheckBox
     function yesCheckBoxValueChanged(app, ~)
-        switch class(app)
-            case "struct"
-                app.Parent.UserData = app.yesCheckBox.Value;
-            case "matlab.ui.control.CheckBox"
-                app.Parent.UserData = app.Value;
-        end
+        app.Parent.UserData = app.Value;
+        % switch class(app)
+        %     case "struct"
+        %         app.UIFigure.UserData = app.yesCheckBox.Value;
+        %     case "matlab.ui.control.CheckBox"
+        %         app.Parent.UserData = app.Value;
+        % end
     end
 
     % Close request function: UIFigure
