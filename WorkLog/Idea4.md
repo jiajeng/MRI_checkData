@@ -1,10 +1,8 @@
 ## content 
-[20241218](#20241218)  
-get cluster label for spmT*.nii  
-[20241230](#20241230)
-get percentage of all template area output to a excel file  
-[20250107](#20250107)
-get all subject excel file percentage column, then find correlation of two subject.
+[20241218](#20241218) --> get cluster label for spmT*.nii  
+[20241230](#20241230) --> get percentage of all template area output to a excel file  
+[20250107](#20250107) --> get all subject excel file percentage column, then find correlation of two subject.
+[20250207](#20250207) --> using conn BETA_*_subject.nii file get excel
 
 ## 20241218    
 
@@ -47,12 +45,20 @@ get all subject excel file percentage column, then find correlation of two subje
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[content](#content)   
 
-## 
+## 20250207
 
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[content](#content)  
 
-
+- done :
+ - add main_conn.m
+ - read BETA_*.nii file(fisher Z --> r value transform, think like R value)
+ - threshold = +-0.25
+ - get threshold mask map
+ - using Templabel_pert.m to get excel file
+  
+- need to do :
+  - how to detect who is different? 
   
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[content](#content)   
