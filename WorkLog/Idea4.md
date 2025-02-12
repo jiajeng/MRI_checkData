@@ -3,7 +3,7 @@
 [20241230](#20241230) --> get percentage of all template area output to a excel file   
 [20250107](#20250107) --> get all subject excel file percentage column, then find correlation of two subject.  
 [20250207](#20250207) --> using conn BETA_*_subject.nii file get excel  
-[20250210](#20250110) --> find subject different from others
+[20250210](#20250210) --> find subject different from others
 
 ## 20241218    
 
