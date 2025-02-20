@@ -5,6 +5,7 @@
 [20250207](#20250207) --> using conn BETA_*_subject.nii file get excel  
 [20250210](#20250210) --> find subject different from others  
 [20250214](#20250214) --> redo subject 20  
+[20250220](#20250220) --> cluster score then group different data
 
 ## 20241218    
 
@@ -109,11 +110,28 @@
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[content](#content)   
 
-## 
+## 20250220
 
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[content](#content)  
 
+##### cluster score 
+- wcss : within cluster sum of square
+- compute the sum of square for all data point to their cluster centroid
+- sum all data point sum of square
+- if this value is small, means the same cluster data is closer.
+> [!Note]
+> small wcss --> more compact clusters
+
+- silhouette score
+- $S = (b-a)/(max(b,a))$
+- b is distance between cluster
+- a is distance within cluster
+- if a>b, means cluster is looser than each cluster, i.e. bad cluster
+- if b>a, means cluster is compact than each cluster, i.e. good cluster
+- -1 < S < 1
+> [!Note]
+> bigger S --> more compact clusters 
 
   
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
